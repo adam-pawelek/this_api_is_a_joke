@@ -23,6 +23,14 @@ public class JokeService {
         return jokeRepository.save(jokeToAdd);
     }
 
+    public Joke updateJoke(Joke jokeToUpdate){
+        if (jokeRepository.existsById(jokeToUpdate.getId())){
+            return jokeRepository.save(jokeToUpdate);
+        }else{
+            throw new IdNotFoundException(jokeToUpdate.getId());
+        }
+    }
+
     public void deleteJoke(Long id){
         if (jokeRepository.existsById(id)){
 

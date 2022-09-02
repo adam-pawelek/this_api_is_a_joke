@@ -29,6 +29,11 @@ public class JokeController {
         return jokeService.addJoke(jokeToAdd);
     }
 
+    @PutMapping()
+    Joke updateJoke(Joke jokeToUpdate){
+        return jokeService.updateJoke(jokeToUpdate);
+    }
+
     @DeleteMapping("/{id}")
     ResponseEntity<Void> deleteJoke(@PathVariable(value = "id") Long id){
         System.out.println(id);
