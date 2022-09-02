@@ -6,10 +6,9 @@ import com.example.this_api_is_a_joke.data.JokeRepository;
 import com.example.this_api_is_a_joke.service.JokeService;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,5 +27,12 @@ public class JokeController {
     @PostMapping()
     Joke addJoke(Joke jokeToAdd){
         return jokeService.addJoke(jokeToAdd);
+    }
+
+    @DeleteMapping("/{id}")
+    ResponseEntity<Void> deleteJoke(@PathVariable(value = "id") Long id){
+        System.out.println(id);
+        jokeService.deleteJoke(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
